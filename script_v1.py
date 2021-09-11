@@ -3,6 +3,7 @@
 """
 Created on Sun Sep 07 21:11:25 2021
 @author: luizgsouza
+v1: Script with the first version of the project that already works but need some improvements
 """
 
 from os import sep
@@ -93,6 +94,11 @@ class MovieInfo:
         
         return df, genres, production_companies, production_countries, spoken_languages
 
+
+# Set range of movies IDs to retrive data from the API
+begin = 50000
+end = 50005
+
 # create dataframes
 lst = []
 lst_genres = []
@@ -100,7 +106,7 @@ lst_production_companies = []
 lst_production_countries = []
 lst_spoken_languages = []
 
-for movieIndex in range(50000,50005):
+for movieIndex in range(begin,end):
     try:
     
         movie = MovieInfo(movieIndex)
@@ -130,5 +136,3 @@ genres.to_csv('movies_genres.csv', index=False, sep=';')
 production_companies.to_csv('movies_production_companies.csv', index=False, sep=';')
 production_countries.to_csv('movies_production_countries.csv', index=False, sep=';')
 spoken_languages.to_csv('movies_spoken_languages.csv', index=False, sep=';')
-
-

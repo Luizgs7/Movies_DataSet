@@ -3,6 +3,7 @@
 """
 Created on Mon Jul 26 21:11:25 2020
 @author: luizgabriel
+v2: Improvments from v1 like fucntions to avoid duplicated code.
 """
 
 import requests
@@ -78,6 +79,11 @@ class MovieInfo:
         
         return df, genres, production_companies, production_countries, spoken_languages
 
+
+# Set range of movies IDs to retrive data from the API
+begin = 50000
+end = 50005
+
 #Cria DataFrame com todos os filmes
 lst = []
 lst_genres = []
@@ -85,7 +91,7 @@ lst_production_companies = []
 lst_production_countries = []
 lst_spoken_languages = []
 
-for movieIndex in range(5005,10505,10):
+for movieIndex in range(begin,end):
     try:
     
         movie = MovieInfo(movieIndex)
