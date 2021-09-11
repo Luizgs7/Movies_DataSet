@@ -1,6 +1,6 @@
 # Movies Data Set
 
-![capa]()
+![capa](https://github.com/Luizgs7/Movies_Recommendation/blob/80767cf1e1f73fc31e27131ea0f26642e76d9889/capa.jpg)
 
 This project aims to create a movie dataset from the TMDB API so that it can be used in my personal Data Science projects.
 
