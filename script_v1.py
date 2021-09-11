@@ -131,8 +131,4 @@ production_companies.to_csv('movies_production_companies.csv', index=False, sep=
 production_countries.to_csv('movies_production_countries.csv', index=False, sep=';')
 spoken_languages.to_csv('movies_spoken_languages.csv', index=False, sep=';')
 
-#print(dft)
-
-# REF:
-# https://towardsdatascience.com/all-pandas-json-normalize-you-should-know-for-flattening-json-13eae1dfb7dd
 
