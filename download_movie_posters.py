@@ -5,10 +5,12 @@ import pandas as pd # to import csv file
 import os
 from pandasql import sqldf
 
-
+# import data sets (created from the download_movie_data.py)
 df_movies = pd.read_csv('movies_df.csv', sep=';')
 df_genres = pd.read_csv('movies_genres.csv', sep=';')
 
+
+# Using SQL to get the first genre for each movie
 query = """SELECT DISTINCT
               T2.imdb_id, T2.poster_path, T2.genres_name
        FROM (SELECT 
@@ -24,11 +26,12 @@ query = """SELECT DISTINCT
 
 df = sqldf(query)
 
+# Geting the variables that is necessary to be used in the function defined below
 url = df['poster_path']
 filename = df['imdb_id']
 genre = df['genres_name']
 
-
+# Definig the function that get the poster image and saves it in a gender-separated directory.
 def dowload_poster(url,filename,genre):
     ## Set up the image URL and filename
     image_url = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"+str(url)
@@ -54,12 +57,8 @@ def dowload_poster(url,filename,genre):
     else:
         print('Image Couldn\'t be retreived')
 
-# loop to use the fuction in each image link
-for url,filename,genre in zip(url,filename,genre):
-    dowload_poster(url,filename, genre)
 
-
-
-
-# Lembrar de tirar os IMDB_ID NaN
-# Entender a melhor maneira de salvar os dados rotulados (filtrar por genero)
+if __name__ == "__main__":
+    # loop to use the fuction in each image link
+    for url,filename,genre in zip(url,filename,genre):
+        dowload_poster(url,filename, genre)
