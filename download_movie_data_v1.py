@@ -10,6 +10,7 @@ from os import sep
 import requests
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 from tmdb3 import set_key, set_cache
 
 set_key('e4242484419937005a3cab0a068c0ab0')
@@ -96,8 +97,8 @@ class MovieInfo:
 
 
 # Set range of movies IDs to retrive data from the API
-begin = 50000
-end = 50005
+begin = 396157
+end = 700000
 
 # create dataframes
 lst = []
@@ -106,7 +107,9 @@ lst_production_companies = []
 lst_production_countries = []
 lst_spoken_languages = []
 
-for movieIndex in range(begin,end):
+pbar = tqdm(range(begin,end))
+
+for movieIndex in tqdm(range(begin,end)):
     try:
     
         movie = MovieInfo(movieIndex)
@@ -119,9 +122,12 @@ for movieIndex in range(begin,end):
         lst_production_countries.append(production_countries)
         lst_spoken_languages.append(spoken_languages)        
 
-        print(movieIndex, df['title'])
+        #nome = df['title']
+        pbar.set_description(f'Filme: {movieIndex}')
+        #print(movieIndex, df['title'])
     except:
-        print("Não encontrou:", movieIndex)
+        pbar.set_description(f'Não encontrou: {movieIndex}')
+        #print("Não encontrou:", movieIndex)
 
 dft = pd.concat(lst)
 genres = pd.concat(lst_genres)
